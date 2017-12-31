@@ -1,0 +1,80 @@
+#include "catch/catch.hpp"
+#include <iostream>
+#include "String.hpp"
+
+using busboy::String;
+
+TEST_CASE( "String access", "[String]" ) {
+
+    SECTION( "Construction, equality" ) {
+
+        String one = "one";
+        String two = "two";
+        CHECK( one.getLength() == 3 );
+        CHECK( one.getCapacity() >= 3 );
+
+        CHECK( one.operator==( "one" ) );
+        CHECK( one.operator==( String( one ) ) );
+        CHECK( !one.operator!=( "one" ) );
+        CHECK( !one.operator==( "two" ) );
+        CHECK( one.operator!=( two ) );
+
+        CHECK( one.operator<( two ) );
+        CHECK( one.operator<= ( two ) );
+        CHECK( two.operator>( one ) );
+        CHECK( two.operator>=( one ) );
+
+        String anotherOne( one );
+        CHECK( one.operator==( anotherOne ) );
+
+    }
+
+    SECTION( "Concatenation" ) {
+
+        CHECK(
+            ( String( "Hello" ) + String( ", World!" ) ).operator==(
+                "Hello, World!"
+            )
+        );
+
+        CHECK(
+            ( String( "Hello" ) += String( ", World!" ) ).operator==(
+                "Hello, World!"
+            )
+        );
+
+        CHECK(
+            ( String( "Hello" ) + ", World!" ).operator==(
+                "Hello, World!"
+            )
+        );
+
+        CHECK(
+            ( String( "Hello" ) += ", World!" ).operator==(
+                "Hello, World!"
+            )
+        );
+
+    }
+
+    SECTION( "Assignment, reservation, compaction" ) {
+
+        String msg;
+        msg = "Hello, World!";
+        CHECK( msg.getLength() == 13 );
+
+        msg.compact();
+        CHECK( msg.getLength() == 13 );
+
+        msg.reserve( 23 );
+        CHECK( msg.getCapacity() >= 23 );
+
+        msg.compact();
+        CHECK( msg.getLength() == 13 );
+        CHECK( msg.getCapacity() == 13 );
+
+        CHECK( msg.operator==( "Hello, World!" ) );
+
+    }
+
+}
