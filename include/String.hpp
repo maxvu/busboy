@@ -33,23 +33,23 @@ namespace busboy {
         String & operator= ( const String & other );
         String & operator= ( const char * other );
 
-        bool operator== ( const String & other );
-        bool operator== ( const char * cstr );
+        bool operator== ( const String & other ) const;
+        bool operator== ( const char * cstr ) const;
 
-        bool operator!= ( const String & other );
-        bool operator!= ( const char * cstr );
+        bool operator!= ( const String & other ) const;
+        bool operator!= ( const char * cstr ) const;
 
-        bool operator< ( const String & other );
-        bool operator> ( const char * cstr );
+        bool operator< ( const String & other ) const;
+        bool operator> ( const char * cstr ) const;
 
-        bool operator<= ( const String & other );
-        bool operator>= ( const char * cstr );
+        bool operator<= ( const String & other ) const;
+        bool operator>= ( const char * cstr ) const;
 
         String & operator+= ( const String & other );
         String & operator+= ( const char * cstr );
 
-        String operator+ ( const String & other );
-        String operator+ ( const char * cstr );
+        String operator+ ( const String & other ) const;
+        String operator+ ( const char * cstr ) const;
 
         char & operator[] ( size_t idx );
         const char & operator[] ( size_t idx ) const;
@@ -57,7 +57,7 @@ namespace busboy {
         String & reserve ( size_t newCap );
         String & compact ();
 
-        const char * find ( const char * substr );
+        const char * find ( const char * substr ) const;
 
         operator const char * () const;
 

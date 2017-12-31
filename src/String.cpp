@@ -63,37 +63,37 @@ namespace busboy {
         return *this;
     }
 
-    bool String::operator== ( const String & other ) {
+    bool String::operator== ( const String & other ) const {
         if ( this->len != other.len )
             return false;
         return strcmp( this->buf, other.buf ) == 0;
     }
 
-    bool String::operator== ( const char * cstr ) {
+    bool String::operator== ( const char * cstr ) const {
         return strncmp( this->buf, cstr, this->len ) == 0;
     }
 
-    bool String::operator!= ( const String & other ) {
+    bool String::operator!= ( const String & other ) const {
         return !( *this == other );
     }
 
-    bool String::operator!= ( const char * cstr ) {
+    bool String::operator!= ( const char * cstr ) const {
         return !( *this == cstr );
     }
 
-    bool String::operator< ( const String & other ) {
+    bool String::operator< ( const String & other ) const {
         return strcmp( this->buf, other.buf ) < 0;
     }
 
-    bool String::operator> ( const char * cstr ) {
+    bool String::operator> ( const char * cstr ) const {
         return strcmp( this->buf, cstr ) > 0;
     }
 
-    bool String::operator<= ( const String & other ) {
+    bool String::operator<= ( const String & other ) const {
         return strcmp( this->buf, other.buf ) <= 0;
     }
 
-    bool String::operator>= ( const char * cstr ) {
+    bool String::operator>= ( const char * cstr ) const {
         return strcmp( this->buf, cstr ) >= 0;
     }
 
@@ -112,13 +112,13 @@ namespace busboy {
         return *this;
     }
 
-    String String::operator+ ( const String & other ) {
+    String String::operator+ ( const String & other ) const {
         String tmp = *this;
         tmp += other;
         return tmp;
     }
 
-    String String::operator+ ( const char * cstr ) {
+    String String::operator+ ( const char * cstr ) const {
         return String( *this ) += cstr;
     }
 
@@ -148,7 +148,7 @@ namespace busboy {
         return this->__resize( this->len );
     }
 
-    const char * String::find ( const char * substr ) {
+    const char * String::find ( const char * substr ) const {
         return strstr( this->buf, substr );
     }
 
