@@ -122,6 +122,18 @@ namespace busboy {
         return String( *this ) += cstr;
     }
 
+    char & String::operator[] ( size_t idx ) {
+        if ( idx >= this->len )
+            throw "TODO: real exception.";
+        return this->buf[ idx ];
+    }
+
+    const char & String::operator[] ( size_t idx ) const {
+        if ( idx >= this->len )
+            throw "TODO: real exception.";
+        return this->buf[ idx ];
+    }
+
     String & String::reserve ( size_t newCap ) {
         if ( newCap <= this->cap )
             return *this;

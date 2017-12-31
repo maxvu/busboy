@@ -51,6 +51,9 @@ namespace busboy {
         String operator+ ( const String & other );
         String operator+ ( const char * cstr );
 
+        char & operator[] ( size_t idx );
+        const char & operator[] ( size_t idx ) const;
+
         String & reserve ( size_t newCap );
         String & compact ();
 

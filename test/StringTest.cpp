@@ -77,4 +77,17 @@ TEST_CASE( "String access", "[String]" ) {
 
     }
 
+    SECTION( "Subscript access" ) {
+
+        String msg( "Hello, World!" );
+        CHECK( msg[ 0 ] == 'H' );
+        CHECK( msg[ 1 ] == 'e' );
+        CHECK( msg[ 2 ] == 'l' );
+        CHECK( msg[ 3 ] == 'l' );
+        CHECK( msg[ 4 ] == 'o' );
+        CHECK( msg[ 12 ] == '!' );
+        CHECK_THROWS( msg[ 13 ] );
+
+    }
+
 }
