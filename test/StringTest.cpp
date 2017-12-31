@@ -1,5 +1,4 @@
 #include "catch/catch.hpp"
-#include <iostream>
 #include "String.hpp"
 
 using busboy::String;
