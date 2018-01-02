@@ -326,7 +326,25 @@ namespace busboy {
             return this->has( *key );
         }
 
-        T & peek ( const String & key ) const {
+        const T & peek ( const String & key ) const {
+            return ( *this )[ key ];
+        }
+
+        T & peek ( const String & key ) {
+            return ( *this )[ key ];
+        }
+
+        const T & operator[] ( const String & key ) const {
+            MapSlot * lo = this->bank->peekLo( djb2( key ) );
+            MapSlot * hi = this->bank->peekHi( sdbm( key ) );
+            if ( lo && lo->key == key )
+                return *( lo->val );
+            if ( hi && hi->key == key )
+                return *( hi->val );
+            throw "peek() on non-existent Map key.";
+        }
+
+        T & operator[] ( const String & key ) {
             MapSlot * lo = this->bank->peekLo( djb2( key ) );
             MapSlot * hi = this->bank->peekHi( sdbm( key ) );
             if ( lo && lo->key == key )
